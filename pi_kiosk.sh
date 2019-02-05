@@ -7,7 +7,7 @@ echo
 echo
 
 #### choose site
-read -p "Welche Internetseite soll aufgerufen werden ? >>>>  " -e -i https://zeroaim.de showurl
+read -p "Welche Internetseite soll aufgerufen werden ?  " -e -i https://zeroaim.de showurl
 echo
 echo
 
@@ -23,9 +23,9 @@ xset -dpms
 setxkbmap -option terminate:ctrl_alt_bksp
 
 #Chromium incognito kiosk mode
-sed -i '"'s/"exited_cleanly":false/"exited_cleanly":true/'"' ~/.config/chromium/'"#Local State'"'
+sed -i '"'s/"exited_cleanly":false/"exited_cleanly":true/'"' ~/.config/chromium/'"'Local State'"'
 sed -i '"'s/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/'"' ~/.config/chromium/Default/Preferences
-chromium-browser --incognito --disable-infobars --kiosk '"'$showurl'"'
+chromium-browser --incognito --disable-infobars --kiosk "'"'""${showurl}""'"'"
  " | sudo tee --append /etc/xdg/openbox/autostart > /dev/null
 echo 
 echo
@@ -39,8 +39,11 @@ echo
 echo
 
 #### autostart openbox/chrome
+read -p "Setup autostart ?  [yn]" -n 1 -r answer1
+if [[ $answer1 = y ]]; then
 sudo cp /etc/profile /etc/profile.orig
 echo "startx -- -nocursor"  | sudo tee --append /etc/profile > /dev/null
+fi
 echo
 echo
 
