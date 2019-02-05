@@ -1,7 +1,11 @@
 #!/bin/bash
 
+
 #### install stuff
+read -p "apt update needed ?  [yn]" -n 1 -r answer1
+if [[ $answer1 = y ]]; then
 sudo apt update && sudo apt upgrade -y
+fi
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
 echo
 echo
@@ -39,6 +43,7 @@ echo
 echo
 
 #### autostart openbox/chrome
+#### autostart question temp
 read -p "Setup autostart ?  [yn]" -n 1 -r answer1
 if [[ $answer1 = y ]]; then
 sudo cp /etc/profile /etc/profile.orig
