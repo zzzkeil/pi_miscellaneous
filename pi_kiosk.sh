@@ -1,8 +1,7 @@
 #!/bin/bash
 
- 
+echo "When you run this script for the first time, reply with n" 
 read -p "Just change the website?  [yn]" -n 1 -r answer1
-echo "When you run this script for the first time, reply with n"
 if [[ $answer1 = y ]]; then
 read -p "Which website should be opened : " -e -i https://zeroaim.de showurl
 sudo mv /etc/xdg/openbox/autostart /etc/xdg/openbox/autostart.orig
@@ -22,15 +21,15 @@ chromium-browser --incognito --disable-infobars --hide-scrollbars --kiosk "'"'""
  " | sudo tee --append /etc/xdg/openbox/autostart > /dev/null
  exit 1
 else
-read -p "Just change touchscreen orientation to normal?  [yn]" -n 1 -r answer2
 echo "When you run this script for the first time, reply with n"
+read -p "Just change touchscreen orientation to normal?  [yn]" -n 1 -r answer2
 if [[ $answer2 = y ]]; then
 sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
  exit 1
 else
-read -p "Change touchscreen orientation to 90 degrees?  [yn]" -n 1 -r answer22
 echo "When you run this script for the first time, reply with n"
 echo "When you set this, add this display_hdmi_rotate=1  !manually! to /boot/config.txt"
+read -p "Change touchscreen orientation to 90 degrees?  [yn]" -n 1 -r answer22
 if [[ $answer22 = y ]]; then
 sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
 echo '
@@ -110,8 +109,8 @@ echo
 echo
 
 #### change touchscreen orientation
-read -p "Change touchscreen orientation 90 degrees ?  [yn]" -n 1 -r answer4
 echo "When you set this, add this display_hdmi_rotate=1  !manually! to /boot/config.txt"
+read -p "Change touchscreen orientation 90 degrees ?  [yn]" -n 1 -r answer4
 if [[ $answer4 = y ]]; then
 sudo mv /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/10-evdev.conf.orig
 sudo rm /usr/share/X11/xorg.conf.d/10-evdev.conf
