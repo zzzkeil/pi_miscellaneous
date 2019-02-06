@@ -71,7 +71,7 @@ Section "InputClass"
         Option "InvertX" "false"
         Option "InvertY" "true"
 EndSection
-' | | sudo tee --append /usr/share/X11/xorg.conf.d/45-evdev.conf > /dev/null
+' | sudo tee --append /usr/share/X11/xorg.conf.d/45-evdev.conf > /dev/null
 exit 1
 fi
 fi
