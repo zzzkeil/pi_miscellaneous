@@ -27,6 +27,52 @@ echo "When you run this script for the first time, reply with n"
 if [[ $answer2 = y ]]; then
 sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
  exit 1
+else
+read -p "Change touchscreen orientation to 90 degrees?  [yn]" -n 1 -r answer22
+echo "When you run this script for the first time, reply with n"
+echo "When you set this, add this display_hdmi_rotate=1  !manually! to /boot/config.txt"
+if [[ $answer22 = y ]]; then
+sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
+echo '
+Section "InputClass"
+        Identifier "evdev pointer catchall"
+        MatchIsPointer "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+EndSection
+
+Section "InputClass"
+        Identifier "evdev keyboard catchall"
+        MatchIsKeyboard "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+EndSection
+
+Section "InputClass"
+        Identifier "evdev touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+EndSection
+
+Section "InputClass"
+        Identifier "evdev tablet catchall"
+        MatchIsTablet "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+EndSection
+
+Section "InputClass"
+        Identifier "evdev touchscreen catchall"
+        MatchIsTouchscreen "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "evdev"
+        Option "SwapAxes" "true"
+        Option "InvertX" "false"
+        Option "InvertY" "true"
+EndSection
+' | | sudo tee --append /usr/share/X11/xorg.conf.d/45-evdev.conf > /dev/null
+exit 1
 fi
 fi
 
@@ -135,5 +181,5 @@ echo
 ## autologing pi without raspi-config
 ## check if autostart arealy set and skip
 ## change / vars for screen oriantations
-##
+## set file to check if the script runs the first time
 ##
