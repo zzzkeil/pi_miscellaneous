@@ -74,6 +74,7 @@ EndSection
 exit 1
 fi
 fi
+fi
 
 #### choose site
 read -p "Which website should be opened :  " -e -i https://zeroaim.de showurl
