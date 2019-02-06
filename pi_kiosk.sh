@@ -3,6 +3,7 @@
 echo "When you run this script for the first time, reply with n" 
 read -p "Just change the website?  [yn]" -n 1 -r answer1
 if [[ $answer1 = y ]]; then
+echo
 read -p "Which website should be opened : " -e -i https://zeroaim.de showurl
 sudo mv /etc/xdg/openbox/autostart /etc/xdg/openbox/autostart.orig
 echo "
@@ -23,6 +24,7 @@ chromium-browser --incognito --disable-infobars --hide-scrollbars --kiosk "'"'""
 else
 echo "When you run this script for the first time, reply with n"
 read -p "Just change touchscreen orientation to normal?  [yn]" -n 1 -r answer2
+echo
 if [[ $answer2 = y ]]; then
 sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
  exit 1
@@ -30,6 +32,7 @@ else
 echo "When you run this script for the first time, reply with n"
 echo "When you set this, add this display_hdmi_rotate=1  !manually! to /boot/config.txt"
 read -p "Change touchscreen orientation to 90 degrees?  [yn]" -n 1 -r answer22
+echo
 if [[ $answer22 = y ]]; then
 sudo rm /usr/share/X11/xorg.conf.d/45-evdev.conf
 echo '
