@@ -92,6 +92,7 @@ read -p "apt update needed ?  [yn]" -n 1 -r answer3
 if [[ $answer3 = y ]]; then
 sudo apt update && sudo apt upgrade -y
 fi
+sudo rpi-update
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xserver-xorg-input-evdev xinit openbox chromium-browser -y
 echo
 echo
